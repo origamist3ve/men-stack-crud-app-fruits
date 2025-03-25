@@ -1,0 +1,22 @@
+<!-- views/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fruits App</title>
+</head>
+<body>
+<h1>Here is a Fruit</h1>
+<p><%=fruit.name%></p>
+ <% if (fruit.isReadyToEat) {%>
+    <p>Fruit is ready to eat</p>
+    <%}%>
+
+<form action = "/fruits/<%= fruit._id%>/_method=DELETE" method="POST">
+    <button type="submit"> Delete</button>
+</form>
+<a href = "fruits/<%= fruit._id%>">asdfsadf</a>
+</body>
+</html>

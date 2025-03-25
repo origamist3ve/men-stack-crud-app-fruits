@@ -18,6 +18,13 @@ fruitsRouter.get("/fruits", async (req, res) => {
     res.render("fruits/index", { fruits });
 });
 
+//Display fruit by id
+fruitsRouter.get("/fruits/:id", async (req, res) => {
+    const {id} = req.params;
+    const fruit = await Fruit.findById(id);
+    res.render("fruits/show", { fruit });
+})
+
 // Create a fruit
 fruitsRouter.post("/fruits", async (req, res) => {
     let { name, isReadyToEat } = req.body;
@@ -27,10 +34,17 @@ fruitsRouter.post("/fruits", async (req, res) => {
     } else {
         isReadyToEat = false;
     }
-
     const fruit = await Fruit.create({ name, isReadyToEat });
-
     res.redirect("/fruits");
 });
+
+//Edit the form
+fruitsRouter.put("/fruits/:id/edit", async (req, res) => {
+    const {id} = req.params;
+    const fruit = await Fruit.findById(id);
+    res.render("fruits/edit", { fruit });
+})
+
+
 
 export default fruitsRouter;
